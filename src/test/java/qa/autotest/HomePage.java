@@ -19,22 +19,22 @@ public class HomePage extends TestBase{
     public String password = "1qaz!QAZ";
 
     //Locators==========================================================================================================
-    //section=======================================================================================================
+        //section=======================================================================================================
     public By logoTitleLocator = By.cssSelector("#site-branding a.site-logo");
     public By sectionSaleLocator = By.cssSelector("aside#accesspress_store_product-2");
     public By sectionNewCollectionLocator = By.cssSelector("aside#accesspress_store_product-3");
     public By contactsInfoLocator = By.cssSelector("div.cta-desc_simple");
-    //navigation====================================================================================================
+        //navigation====================================================================================================
     public By navigationMainPanelLocator = By.xpath("//a[text()='Главная']/parent::li[@id]");
     public By navigationCatalogPanelLocator = By.xpath("//a[text()='Каталог']");
     public By navigationMyAccPanelLocator = By.xpath("//a[text()='Мой аккаунт']/parent::li[@id]");
     public By navigationBasketPanelLocator = By.xpath("//a[text()='Корзина']/parent::li[@id]");
     public By navigationOrderPanelLocator = By.xpath("//a[text()='Оформление заказа']/parent::li[@id]");
-    //product=======================================================================================================
+        //product=======================================================================================================
     public By saleCollectionLocator = By.xpath("//span[@class='onsale'][text()='Скидка!']");
     public By newCollectionLocator = By.xpath("//span[@class='label-new'][text()='Новый!']");
 
-    //logIn=========================================================================================================
+        //logIn=========================================================================================================
     public By enterLocator = By.cssSelector(".login-woocommerce a");
     public By logInNameLocator = By.cssSelector("#username");
     public By logInPassLocator = By.cssSelector("#password");
@@ -43,19 +43,28 @@ public class HomePage extends TestBase{
 
     public By enterButtonLocator = By.cssSelector(".woocommerce-form-login__submit");
     public By authorizationLocator = By.cssSelector(".custom-register-button");
-    //registration==================================================================================================
+        //registration==================================================================================================
     public By registrationUserNameLocator = By.cssSelector("#reg_username");
     public By registrationMailAddressLocator = By.cssSelector("#reg_email");
     public By registrationPasswordLocator = By.cssSelector("#reg_password");
     public By registrationButtonLocator = By.cssSelector("button[name='register']");
     public By registrationPassTextLocator = By.xpath("//div[text()='Регистрация завершена']");
-    //personal account==============================================================================================
+        //personal account==============================================================================================
     public By ordersLocator = By.cssSelector("li.woocommerce-MyAccount-navigation-link--orders a");
 
-    //specificMethod================================================================================================
+        //specificMethod================================================================================================
+    protected void findContactsMainPage() {
+        try{
+            Thread.sleep(2000);
+            driver.findElement(hp.contactsInfoLocator).isDisplayed();
+        }catch (Exception e){
+            System.out.println("[Error]: couldn't find locator");
+        }
+    }
 
-
-
+    /**
+     * Проверка основных секций, элементов на странице
+     */
     @Test
     public void checkElements(){
         driver.navigate().to(UrlMain);
@@ -67,10 +76,13 @@ public class HomePage extends TestBase{
         Assert.assertTrue("Секция 'Новые Товары' отсутствует",driver
                 .findElement(sectionNewCollectionLocator).isDisplayed());
         driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
-        th.findContactsMainPage();
+        findContactsMainPage();
         Assert.assertTrue("Секция 'Контакты' отсутствует",driver.findElement(contactsInfoLocator).isDisplayed());
     }
 
+    /**
+     * Проверка правильности редиректа Навигационной панели
+     */
     @Test
     public void checkRedirectPanel(){
 
@@ -94,6 +106,9 @@ public class HomePage extends TestBase{
 
     }
 
+    /**
+     * Проверка авторизации
+     */
     @Test
     public void authorization(){
         driver.navigate().to(UrlAuthoriz);
@@ -102,6 +117,9 @@ public class HomePage extends TestBase{
         driver.findElement(logInPassLocator).sendKeys(password);
     }
 
+    /**
+     * Проверка регистрации
+     */
     @Test
     public void registration(){
         driver.navigate().to(UrlRegister);

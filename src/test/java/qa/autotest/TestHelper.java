@@ -2,7 +2,7 @@ package qa.autotest;
 
 import java.util.Random;
 
-public class TestHelper extends TestBase {
+public class TestHelper  {
     //Methods===========================================================================================================
     public String randomGuid(){
         return randomText() + '@' + randomText() + ".com";
@@ -23,12 +23,5 @@ public class TestHelper extends TestBase {
         return sb.toString();
     }
 
-    protected void findContactsMainPage() {
-        try{
-            Thread.sleep(2000);
-            driver.findElement(hp.contactsInfoLocator).isDisplayed();
-        }catch (Exception e){
-            System.out.println("[Error]: couldn't find locator");
-        }
-    }
+
 }
