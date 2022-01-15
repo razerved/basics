@@ -1,8 +1,14 @@
 package qa.autotest;
 
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
 import java.util.Random;
 
 public class TestHelper  {
+
+    //private WebDriver driver;
+
     //Methods===========================================================================================================
     public String randomGuid(){
         return randomText() + '@' + randomText() + ".com";
@@ -23,5 +29,11 @@ public class TestHelper  {
         return sb.toString();
     }
 
+    /*public void open(){
+        driver.navigate().to(url);
+    }
+    public TestHelper(WebDriver driver){
+        this.driver = driver;
+    }*/
 
 }

@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 
-public class HomePage extends TestBase{
+public class TestHomePage extends TestBase{
 
     //Navigate==========================================================================================================
     private String UrlMain = "http://intershop5.skillbox.ru/";
