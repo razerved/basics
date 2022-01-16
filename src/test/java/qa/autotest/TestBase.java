@@ -6,15 +6,16 @@ import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import qa.autotest.pages.HelperPage;
 
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
     protected WebDriver driver;
     protected WebDriverWait wait;
-    protected static TestHomePage hp;
-    protected static TestHelper th;
+    protected static TestMainPage mp;
     protected static TestProductsCatalog pc;
+    protected static HelperPage hp;
 
 
     @Before
@@ -25,9 +26,9 @@ public class TestBase {
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         driver.manage().window().setSize(new Dimension(1920,1080));
 
-        hp = new TestHomePage();
-        //th = new TestHelper();
+        mp = new TestMainPage();
         pc = new TestProductsCatalog();
+        hp = new HelperPage();
     }
 
 
