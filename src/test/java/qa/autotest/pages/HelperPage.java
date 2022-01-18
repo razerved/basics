@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import qa.autotest.TestBase;
 
+import java.util.List;
 import java.util.Random;
 
 public class HelperPage extends TestBase {
@@ -13,12 +14,12 @@ public class HelperPage extends TestBase {
         this.driver = driver;
         //header = new HeaderPanel(driver);
     }*/
-    public void open(String url){
+    /*public void open(String url){
         driver.navigate().to(url);
     }
     public void openNew(){
         driver.navigate().to(UrlMain);
-    }
+    }*/
 
     //Navigate==========================================================================================================
     public String UrlMain = "http://intershop5.skillbox.ru/";
@@ -26,6 +27,7 @@ public class HelperPage extends TestBase {
     public String UrlAuthoriz = "http://intershop5.skillbox.ru/my-account/";
     public String UrlBasket = "http://intershop5.skillbox.ru/cart/";
     public String UrlCatalog = "http://intershop5.skillbox.ru/product-category/catalog/";
+
 
     //Values============================================================================================================
     public String name = "Ivan Ivanov";
@@ -69,18 +71,24 @@ public class HelperPage extends TestBase {
     public By registrationPassTextLocator = By.xpath("//div[text()='Регистрация завершена']");
         //personal account==============================================================================================
     public By ordersLocator = By.cssSelector("li.woocommerce-MyAccount-navigation-link--orders a");
+        //search========================================================================================================
+    public By searchLocator = By.cssSelector(".search-field");
         //Catalog=======================================================================================================
-    //public By stept = By
-    //public By stept = By
-    //public By stept = By
-    //public By stept = By
-    //public By stept = By
-    //public By stept = By
-    //public By stept = By
-    //public By stept = By
+    public By allProductsCatalogLocator = By.cssSelector("div.wc-products");
+    public By buttonBasketCatalogLocator = By.cssSelector("a.button.add_to_cart_button");
+    public By buttonDetailedCatalogLocator = By.cssSelector("a.added_to_cart.wc-forward");
+        //sectionCatalog================================================================================================
+    public By productCategoriesLocator = By.cssSelector(".widget.woocommerce.widget_product_categories");
+    public By productFilterLocator = By.cssSelector(".widget.woocommerce.widget_price_filter");
+
+    public By catalogSearchResultLocato = By.cssSelector(".woocommerce-breadcrumb.accesspress-breadcrumb span");
+    //public By stept = By.xpath("");
+    //public By stept = By.xpath("");
+    //public By stept = By.xpath("");
+    //public By stept = By.cssSelector("");
     //public By stept = By
 
-
+    public By searchProductNameLocator = By.xpath("//ul//h3[contains(text(), 'Холодиль')]");
 
 
     //Methods===========================================================================================================
@@ -113,7 +121,13 @@ public class HelperPage extends TestBase {
             System.out.println("[Error]: couldn't find locator");
         }
     }
-
+    /*public void authorizationMethod() {
+        driver.navigate().to(hp.UrlMain);
+        driver.findElement(hp.logoTitleLocator).isDisplayed();
+        driver.findElement(hp.enterLocator).click();
+        driver.findElement(hp.logInNameLocator).sendKeys(hp.name);
+        driver.findElement(hp.logInPassLocator).sendKeys(hp.password);
+    }*/
 
 
         /*private void aasrtSaleLabelsOnProductsDiscount(){

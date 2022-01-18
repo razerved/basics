@@ -1,7 +1,9 @@
 package qa.autotest;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -29,6 +31,7 @@ public class TestBase {
         mp = new TestMainPage();
         pc = new TestProductsCatalog();
         hp = new HelperPage();
+
     }
 
 

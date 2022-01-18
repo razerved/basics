@@ -11,8 +11,8 @@ public class TestMainPage extends TestBase{
      * Проверка основных секций, элементов на странице
      */
     @Test
-    public void checkElements(){
-        hp.open(hp.UrlMain);
+    public void checkMainElements(){
+        driver.get(hp.UrlMain);
         Assert.assertTrue("Logo отсутствует",driver.findElement(hp.logoTitleLocator).isDisplayed());
         Assert.assertTrue("Кнопка 'Войти' отсутствует",driver.findElement(hp.enterLocator).isDisplayed());
         Assert.assertTrue("Секция 'Распродажа' отсутствует",driver
@@ -29,19 +29,19 @@ public class TestMainPage extends TestBase{
      */
     @Test
     public void checkRedirectPanel(){
-        hp.open(hp.UrlMain);
+        driver.get(hp.UrlMain);
         driver.findElement(hp.navigationMyAccPanelLocator).click();
         String actMyAccount = driver.getCurrentUrl();
         Assert.assertEquals("Переход осуществлен на страницу: "
                 + actMyAccount + " ", hp.UrlAuthoriz , actMyAccount);
 
-        hp.open(hp.UrlMain);
+        driver.get(hp.UrlMain);
         driver.findElement(hp.navigationBasketPanelLocator).click();
         String actMyBasket = driver.getCurrentUrl();
         Assert.assertEquals("Переход осуществлен на страницу: "
                 + actMyBasket + " ", hp.UrlBasket , actMyBasket);
 
-        hp.open(hp.UrlBasket);
+        driver.get(hp.UrlBasket);
         driver.findElement(hp.navigationMainPanelLocator).click();
         String actMyMain = driver.getCurrentUrl();
         Assert.assertEquals("Переход осуществлен на страницу: "
@@ -54,18 +54,23 @@ public class TestMainPage extends TestBase{
      */
     @Test
     public void authorization(){
-
+        authorizationMethod();
+    }
+    public void authorizationMethod() {
+        driver.get(hp.UrlMain);
         driver.findElement(hp.logoTitleLocator).isDisplayed();
+        driver.findElement(hp.enterLocator).click();
         driver.findElement(hp.logInNameLocator).sendKeys(hp.name);
         driver.findElement(hp.logInPassLocator).sendKeys(hp.password);
     }
+
 
     /**
      * Проверка регистрации
      */
     @Test
     public void registration(){
-        hp.open(hp.UrlRegister);
+        driver.get(hp.UrlMain);
         driver.findElement(hp.logoTitleLocator).isDisplayed();
         driver.findElement(hp.registrationUserNameLocator).sendKeys(hp.randomText());
         driver.findElement(hp.registrationMailAddressLocator).sendKeys(hp.randomGuid());
@@ -74,6 +79,7 @@ public class TestMainPage extends TestBase{
         Assert.assertTrue("Слова 'Вы зарегистрированы!' отсутствуют",
                 driver.findElement(hp.registrationPassTextLocator).isDisplayed());
     }
+
 
     @Test
     public void buyingProduct(){

@@ -1,26 +1,57 @@
 package qa.autotest;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 
 
 public class TestProductsCatalog extends TestBase {
 
-    //Navigate==========================================================================================================private String UrlCatalog = "http://intershop5.skillbox.ru/product-category/catalog/";
+    //Navigate==========================================================================================================
 
-
+    /**
+     * Проверка основных секций, элементов на странице
+     */
     @Test
-    public void set(){
-        //driver.navigate().to(hp.UrlCatalog); - а это работает..
-        hp.open(hp.UrlCatalog); // Почему выдает ошибку ????
-        //java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.WebDriver.navigate()" because "this.driver" is null
-        driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
+    public void checkCatalogElements(){
+        driver.get(hp.UrlCatalog);
+        Assert.assertTrue("Категории товаров отсутствуют",
+                driver.findElement(hp.productCategoriesLocator).isDisplayed());
+        Assert.assertTrue("Фильтр отсутствует",
+                driver.findElement(hp.productFilterLocator).isDisplayed());
         hp.findContactsMainPage();
 
     }
 
+    /**
+     * Проверка редиректа в корзину, при покупке
+     */
+    @Test
+    public void testAddingToBasket(){
+        driver.get(hp.UrlCatalog);
+        driver.findElements(hp.buttonBasketCatalogLocator).get(2).click();
+        driver.findElement(hp.buttonDetailedCatalogLocator).click();
+        String actMyCart = driver.getCurrentUrl();
+        Assert.assertEquals("Редирект на: "
+                + hp.UrlBasket + "не прошел", hp.UrlBasket, actMyCart );
 
+    }
 
+    /**
+     * Проверка поисковой строки, при вводе Холодильник - результат поиска Холодильник
+     * но не выводимого товара
+     */
+    @Test
+    public void checkSearchPanel(){
+        driver.get(hp.UrlCatalog);
+        driver.findElement(hp.searchLocator).sendKeys("холодильник");
+        driver.findElement(hp.searchLocator).sendKeys(Keys.ENTER);
+        Assert.assertTrue("Выведенный текст отличается от отображаемого",
+                driver.findElement(hp.catalogSearchResultLocato)
+                        .getText().equals("Результаты Поиска “Холодильник”"));
+        //Assert.assertTrue(driver.findElements(hp.searchProductNameLocator).equals("Холодиль"));
+    }
 
 }
