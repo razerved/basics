@@ -13,7 +13,7 @@ import qa.autotest.pages.HelperPage;
 import java.util.concurrent.TimeUnit;
 
 public class TestBase {
-    protected WebDriver driver;
+    protected static WebDriver driver;
     protected WebDriverWait wait;
     protected static TestMainPage mp;
     protected static TestProductsCatalog pc;

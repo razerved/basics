@@ -14,12 +14,9 @@ public class HelperPage extends TestBase {
         this.driver = driver;
         //header = new HeaderPanel(driver);
     }*/
-    /*public void open(String url){
-        driver.navigate().to(url);
+    public void openset(String url){
+        driver.get(url);
     }
-    public void openNew(){
-        driver.navigate().to(UrlMain);
-    }*/
 
     //Navigate==========================================================================================================
     public String UrlMain = "http://intershop5.skillbox.ru/";
@@ -27,7 +24,7 @@ public class HelperPage extends TestBase {
     public String UrlAuthoriz = "http://intershop5.skillbox.ru/my-account/";
     public String UrlBasket = "http://intershop5.skillbox.ru/cart/";
     public String UrlCatalog = "http://intershop5.skillbox.ru/product-category/catalog/";
-
+    public String UrlOrderProcessing = "http://intershop5.skillbox.ru/checkout/";
 
     //Values============================================================================================================
     public String name = "Ivan Ivanov";
@@ -81,7 +78,7 @@ public class HelperPage extends TestBase {
     public By productCategoriesLocator = By.cssSelector(".widget.woocommerce.widget_product_categories");
     public By productFilterLocator = By.cssSelector(".widget.woocommerce.widget_price_filter");
 
-    public By catalogSearchResultLocato = By.cssSelector(".woocommerce-breadcrumb.accesspress-breadcrumb span");
+    public By catalogSearchResultLocator = By.cssSelector(".woocommerce-breadcrumb.accesspress-breadcrumb span");
     //public By stept = By.xpath("");
     //public By stept = By.xpath("");
     //public By stept = By.xpath("");
@@ -89,6 +86,28 @@ public class HelperPage extends TestBase {
     //public By stept = By
 
     public By searchProductNameLocator = By.xpath("//ul//h3[contains(text(), 'Холодиль')]");
+
+
+        //Basket========================================================================================================
+    //public By stept = By.xpath("");
+    public By buttonCouponLocator = By.cssSelector("button[name='apply_coupon']");
+    public By buttonCheckoutLocator = By.cssSelector("a.button.wc-forward");
+    public By enterCouponLocator = By.cssSelector("#coupon_code");
+    public By removeButtonLocator = By.cssSelector(".remove");
+    public By deleteCouponLocator = By.cssSelector(".woocommerce-remove-coupon");
+    public By textSertLocator = By.cssSelector("tr.coupon-sert500");
+    public By textPriceLocator = By.xpath("tr[@class='order-total']//span/*[text()[contains(., ',00')]]");
+    public By changeNumberLocator = By.cssSelector("input.input-text.qty.text");
+    public By emptyBasketTextLocator = By.cssSelector("p.cart-empty.woocommerce-info");
+    public By returnProductLocator = By.cssSelector("a.restore-item");
+    public By nameProductLocator = By.cssSelector("td.product-name a");
+    public By notCorrectCouponTextLocator = By.cssSelector("ul.woocommerce-error li");
+        //Ordering======================================================================================================
+    public By checkoutHeaderLocator = By.cssSelector("span.current");
+    //public By stept = By.xpath("span/*[text()[contains(., ',00')]]/ancestor::tr[@class='order-total']");
+    //public By nameProductLocator = By.cssSelector("ul.woocommerce-error li");
+    //public By stept = By.xpath("");
+    //public By stept = By.cssSelector(".remove");
 
 
     //Methods===========================================================================================================
@@ -111,7 +130,6 @@ public class HelperPage extends TestBase {
         return sb.toString();
     }
 
-
     //specificMethod================================================================================================
     public void findContactsMainPage() {
         try{
@@ -129,7 +147,6 @@ public class HelperPage extends TestBase {
         driver.findElement(hp.logInPassLocator).sendKeys(hp.password);
     }*/
 
-
         /*private void aasrtSaleLabelsOnProductsDiscount(){
         for (var productslabel : allProductslabelsOnSale){
             Assert.assertTrue("Ну е всех товаров", productslabel.getAttribute("class").contains("onsale"));
@@ -145,8 +162,5 @@ public class HelperPage extends TestBase {
         /*private String getSubTitle(){
             return driver.findElement(registrationButtonLocator).getText();
         }*/
-
-
-
 
 }

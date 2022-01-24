@@ -2,9 +2,7 @@ package qa.autotest;
 
 import org.junit.Assert;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
 
 
 public class TestProductsCatalog extends TestBase {
@@ -49,7 +47,7 @@ public class TestProductsCatalog extends TestBase {
         driver.findElement(hp.searchLocator).sendKeys("холодильник");
         driver.findElement(hp.searchLocator).sendKeys(Keys.ENTER);
         Assert.assertTrue("Выведенный текст отличается от отображаемого",
-                driver.findElement(hp.catalogSearchResultLocato)
+                driver.findElement(hp.catalogSearchResultLocator)
                         .getText().equals("Результаты Поиска “Холодильник”"));
         //Assert.assertTrue(driver.findElements(hp.searchProductNameLocator).equals("Холодиль"));
     }
