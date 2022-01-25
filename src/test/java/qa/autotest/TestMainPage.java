@@ -11,7 +11,7 @@ public class TestMainPage extends TestBase{
      * Проверка основных секций, элементов на странице
      */
     @Test
-    public void checkMainElements(){
+    public void testCheckMainElements(){
         driver.get(hp.UrlMain);
         Assert.assertTrue("Logo отсутствует",driver.findElement(hp.logoTitleLocator).isDisplayed());
         Assert.assertTrue("Кнопка 'Войти' отсутствует",driver.findElement(hp.enterLocator).isDisplayed());
@@ -28,7 +28,7 @@ public class TestMainPage extends TestBase{
      * Проверка правильности редиректа Навигационной панели
      */
     @Test
-    public void checkRedirectPanel(){
+    public void testCheckRedirectPanel(){
         driver.get(hp.UrlMain);
         driver.findElement(hp.navigationMyAccPanelLocator).click();
         String actMyAccount = driver.getCurrentUrl();
@@ -53,7 +53,7 @@ public class TestMainPage extends TestBase{
      * Проверка авторизации
      */
     @Test
-    public void authorization(){
+    public void testAuthorization(){
         authorizationMethod();
     }
     public void authorizationMethod() {
@@ -69,7 +69,7 @@ public class TestMainPage extends TestBase{
      * Проверка регистрации
      */
     @Test
-    public void registration(){
+    public void testRegistration(){
         driver.get(hp.UrlMain);
         driver.findElement(hp.logoTitleLocator).isDisplayed();
         driver.findElement(hp.registrationUserNameLocator).sendKeys(hp.randomText());

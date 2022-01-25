@@ -13,7 +13,7 @@ public class TestProductsCatalog extends TestBase {
      * Проверка основных секций, элементов на странице
      */
     @Test
-    public void checkCatalogElements(){
+    public void testCheckCatalogElements(){
         driver.get(hp.UrlCatalog);
         Assert.assertTrue("Категории товаров отсутствуют",
                 driver.findElement(hp.productCategoriesLocator).isDisplayed());
@@ -42,7 +42,7 @@ public class TestProductsCatalog extends TestBase {
      * но не выводимого товара
      */
     @Test
-    public void checkSearchPanel(){
+    public void testCheckSearchPanel(){
         driver.get(hp.UrlCatalog);
         driver.findElement(hp.searchLocator).sendKeys("холодильник");
         driver.findElement(hp.searchLocator).sendKeys(Keys.ENTER);
