@@ -1,5 +1,6 @@
 package qa.autotest.pages;
 
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import qa.autotest.TestBase;
@@ -25,11 +26,20 @@ public class HelperPage extends TestBase {
     public String UrlBasket = "http://intershop5.skillbox.ru/cart/";
     public String UrlCatalog = "http://intershop5.skillbox.ru/product-category/catalog/";
     public String UrlOrderProcessing = "http://intershop5.skillbox.ru/checkout/";
+    public String UrlCheckout = "http://intershop5.skillbox.ru/checkout/";
 
     //Values============================================================================================================
     public String name = "Ivan Ivanov";
     public String mail = "setset1@set.com";
     public String password = "1qaz!QAZ";
+    public String addresCheckout = "Красная Площадь 1";
+    public String nameCheckout = "Иван";
+    public String lastNameCheckout = "Иванов";
+    public String cityCheckout = "Москва";
+    public String stateCheckout = "Москва";
+    public String indexCheckout = "141140";
+    public String phoneCheckout = "88000000000";
+    public String mailCheckout = "setset1@set.com";
 
     //Locators==========================================================================================================
         //section=======================================================================================================
@@ -91,7 +101,7 @@ public class HelperPage extends TestBase {
         //Basket========================================================================================================
     //public By stept = By.xpath("");
     public By buttonCouponLocator = By.cssSelector("button[name='apply_coupon']");
-    public By buttonCheckoutLocator = By.cssSelector("a.button.wc-forward");
+    public By buttonBasketCheckoutLocator = By.cssSelector("a.button.wc-forward");
     public By enterCouponLocator = By.cssSelector("#coupon_code");
     public By removeButtonLocator = By.cssSelector(".remove");
     public By deleteCouponLocator = By.cssSelector(".woocommerce-remove-coupon");
@@ -104,10 +114,30 @@ public class HelperPage extends TestBase {
     public By notCorrectCouponTextLocator = By.cssSelector("ul.woocommerce-error li");
         //Ordering======================================================================================================
     public By checkoutHeaderLocator = By.cssSelector("span.current");
-    //public By stept = By.xpath("span/*[text()[contains(., ',00')]]/ancestor::tr[@class='order-total']");
-    //public By nameProductLocator = By.cssSelector("ul.woocommerce-error li");
-    //public By stept = By.xpath("");
-    //public By stept = By.cssSelector(".remove");
+
+        //Checkout======================================================================================================
+    public By inputNameLocator = By.cssSelector("input#billing_first_name");
+    public By inputSecondNameLocator = By.cssSelector("input#billing_last_name");
+    public By countryLocator = By.cssSelector("span#select2-billing_country-container");
+    public By inputAddressLocator = By.cssSelector("input#billing_address_1");
+    public By inputCityLocator = By.cssSelector("input#billing_city");
+    public By inputStateLocator = By.cssSelector("input#billing_state");
+    public By inputIndexLocator = By.cssSelector("input#billing_postcode");
+    public By inputPhoneLocator = By.cssSelector("input#billing_phone");
+    public By inputMailLocator = By.cssSelector("input#billing_email");
+    public By radioButtonBankLocator = By.cssSelector("input#payment_method_bacs");
+    public By radioButtonCourierLocator = By.cssSelector("input#payment_method_cod");
+    public By buttonOrderLocator = By.cssSelector("button#place_order");
+    public By inputCommentsLocator = By.xpath("//*[@id='order_comments']");
+    public By finalOrderTextLocator = By.cssSelector("p.woocommerce-thankyou-order-received");
+    public By lastOrderTextLocator = By.cssSelector("li.woocommerce-order-overview__order strong");
+    public By erorrMessageLocator = By.cssSelector("div.woocommerce-NoticeGroup-checkout");
+
+
+        //PersonalArea==================================================================================================
+    public By orderPersonalAreaLocator = By.xpath("//a[text()='Заказы']");
+    public By numberOrderPersonalAreaLocator = By.cssSelector("mark.order-number");
+
 
 
     //Methods===========================================================================================================
@@ -139,13 +169,29 @@ public class HelperPage extends TestBase {
             System.out.println("[Error]: couldn't find locator");
         }
     }
-    /*public void authorizationMethod() {
-        driver.navigate().to(hp.UrlMain);
+
+    public void authorizationMethod() {
+        driver.get(hp.UrlMain);
         driver.findElement(hp.logoTitleLocator).isDisplayed();
         driver.findElement(hp.enterLocator).click();
         driver.findElement(hp.logInNameLocator).sendKeys(hp.name);
         driver.findElement(hp.logInPassLocator).sendKeys(hp.password);
-    }*/
+        driver.findElement(hp.enterButtonLocator).click();
+    }
+
+    public void randomRegistrationMethod() {
+        driver.get(hp.UrlMain);
+        driver.findElement(hp.logoTitleLocator).isDisplayed();
+        driver.findElement(hp.enterLocator).click();
+        driver.findElement(hp.authorizationLocator).click();
+        driver.findElement(hp.registrationUserNameLocator).sendKeys(hp.randomText());
+        driver.findElement(hp.registrationMailAddressLocator).sendKeys(hp.randomGuid());
+        driver.findElement(hp.registrationPasswordLocator).sendKeys(hp.password);
+        driver.findElement(hp.registrationButtonLocator).click();
+        Assert.assertTrue("Слова 'Вы зарегистрированы!' отсутствуют",
+                driver.findElement(hp.registrationPassTextLocator).isDisplayed());
+    }
+
 
         /*private void aasrtSaleLabelsOnProductsDiscount(){
         for (var productslabel : allProductslabelsOnSale){

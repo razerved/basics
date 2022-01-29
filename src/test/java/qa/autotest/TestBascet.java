@@ -5,8 +5,6 @@ import org.junit.Test;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import java.security.Key;
-
 public class TestBascet extends TestBase {
 
 
@@ -32,7 +30,7 @@ public class TestBascet extends TestBase {
         }else {
             Assert.assertTrue("Скидка применена не корректно", (price!=priceWithCoupon));
         }*/
-        driver.findElement(hp.buttonCheckoutLocator).click();
+        driver.findElement(hp.buttonBasketCheckoutLocator).click();
 
     }
 
@@ -98,7 +96,7 @@ public class TestBascet extends TestBase {
         driver.get(hp.UrlCatalog);
         driver.findElements(hp.buttonBasketCatalogLocator).get(2).click();
         driver.findElement(hp.buttonDetailedCatalogLocator).click();
-        driver.findElement(hp.buttonCheckoutLocator).click();
+        driver.findElement(hp.buttonBasketCheckoutLocator).click();
         //wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(hp.checkoutHeaderLocator));
         try {
             Thread.sleep(500);

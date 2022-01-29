@@ -54,15 +54,9 @@ public class TestMainPage extends TestBase{
      */
     @Test
     public void testAuthorization(){
-        authorizationMethod();
+        hp.authorizationMethod();
     }
-    public void authorizationMethod() {
-        driver.get(hp.UrlMain);
-        driver.findElement(hp.logoTitleLocator).isDisplayed();
-        driver.findElement(hp.enterLocator).click();
-        driver.findElement(hp.logInNameLocator).sendKeys(hp.name);
-        driver.findElement(hp.logInPassLocator).sendKeys(hp.password);
-    }
+
 
 
     /**
@@ -70,15 +64,10 @@ public class TestMainPage extends TestBase{
      */
     @Test
     public void testRegistration(){
-        driver.get(hp.UrlMain);
-        driver.findElement(hp.logoTitleLocator).isDisplayed();
-        driver.findElement(hp.registrationUserNameLocator).sendKeys(hp.randomText());
-        driver.findElement(hp.registrationMailAddressLocator).sendKeys(hp.randomGuid());
-        driver.findElement(hp.registrationPasswordLocator).sendKeys(hp.password);
-        driver.findElement(hp.registrationButtonLocator).click();
-        Assert.assertTrue("Слова 'Вы зарегистрированы!' отсутствуют",
-                driver.findElement(hp.registrationPassTextLocator).isDisplayed());
+        hp.randomRegistrationMethod();
     }
+
+
 
 
     @Test
